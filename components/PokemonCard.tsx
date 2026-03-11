@@ -1,33 +1,29 @@
 import { router } from "expo-router";
 import React from "react";
 import { Image, Pressable, StyleSheet, Text } from "react-native";
-router;
 
 interface PokemonCardProps {
   name: string;
+
   url: string;
 }
 
 export default function PokemonCard(props: PokemonCardProps) {
   const id = props.url.split("/").filter(Boolean).at(-1);
   console.log(id);
-  const pokemonImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-
+  const pokemonImageURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
   return (
-    <Pressable //Pressable es mas personalizabe que un View
-      onPress={() => router.push("/new-screen")}
+    <Pressable
+      onPress={() => router.push(`/pokemon/${props.name}`)}
       style={({ pressed }) => [
-        //Esto se pone como un arreglo para integrar multiples "styles"
-        styles.pressableStyle,
-
+        Styles.pressableStyle,
         pressed && {
-          //pressed = mientras este presionado
-          opacity: 0.5,
-        }, //Si el boton esta presionado el "opacity" lo vuelve mas oscuro
+          opacity: 0.5, 
+        },
       ]}
     >
       <Image
-        source={{ uri: pokemonImageUrl }}
+        source={{ uri: pokemonImageURL }}
         style={{ width: 100, height: 100 }}
       ></Image>
       <Text>{props.name}</Text>
@@ -36,7 +32,7 @@ export default function PokemonCard(props: PokemonCardProps) {
   );
 }
 
-const styles = StyleSheet.create({
+const Styles = StyleSheet.create({
   pressableStyle: {
     borderWidth: 1,
     alignItems: "center",

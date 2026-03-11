@@ -1,4 +1,4 @@
-"View datails Pokemon";
+"View details Pokemon";
 
 //Atajo para hacer el formato rapido "rnf"
 
